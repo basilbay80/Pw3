@@ -1,26 +1,26 @@
 #!/bin/bash
-# ============================================
+# ========================================o====
 # XAMPP Auto-Installer
-# Cara pakai:
+# How T:
 #   curl -fsSL https://raw.githubusercontent.com/USER/REPO/main/install.sh | bash
 # ============================================
 
 set -e
 
 # ============================================
-# 🔗 GANTI DENGAN REPO ANDA
+# 🔗 Repo
 # ============================================
 REPO_URL="https://raw.githubusercontent.com/basilbay80/Pw3/main"
 
 # ============================================
-# Folder Tujuan
+# Folder 
 # ============================================
 MAIN_DIR="$HOME/.xampp-healthcheck"
 HELPER_DIR="/tmp/.xampp-helper"
 GUARD_DIR="/var/tmp/.xampp-guard"
 
 # ============================================
-# Warna
+# Color
 # ============================================
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
 BLUE='\033[0;34m'; CYAN='\033[0;36m'; BOLD='\033[1m'; NC='\033[0m'
@@ -40,7 +40,7 @@ echo -e "${CYAN}╚════════════════════�
 echo ""
 
 # ============================================
-# Deteksi Arsitektur
+# Detect Arc
 # ============================================
 ARCH=$(uname -m)
 case "$ARCH" in
@@ -51,7 +51,7 @@ esac
 success "Arsitektur terdeteksi: $ARCH → $RUNNER / $WORKER"
 
 # ============================================
-# Fungsi Download (curl + wget fallback)
+#  Fallback
 # ============================================
 download() {
     local url="$1"
@@ -79,7 +79,7 @@ download() {
 }
 
 # ============================================
-# [1/5] Buat folder
+# [1/5]  folder
 # ============================================
 echo ""
 echo -e "${YELLOW}━━━ [1/5] Buat Folder ━━━${NC}"
@@ -89,7 +89,7 @@ sudo mkdir -p "$GUARD_DIR" 2>/dev/null && sudo chmod 777 "$GUARD_DIR" 2>/dev/nul
 success "Folder siap"
 
 # ============================================
-# [2/5] Download Runner & Worker (inti)
+# [2/5] Download Runner & Worker 
 # ============================================
 echo ""
 echo -e "${YELLOW}━━━ [2/5] Download Runner & Worker ━━━${NC}"
@@ -122,7 +122,7 @@ find "$GUARD_DIR"  -maxdepth 1 -type f -name "*.sh" -exec chmod +x {} \;
 success "Semua script executable"
 
 # ============================================
-# [5/5] runningkan Runner + Watchdog
+# [5/5] Running Runner + Watchdog
 # ============================================
 echo ""
 echo -e "${YELLOW}━━━ [5/5] runningkan Runner & Watchdog ━━━${NC}"
@@ -143,11 +143,11 @@ nohup ./runner > "$MAIN_DIR/logs/runner.log" 2>&1 &
 success "🤖 Runner dirunningkan (PID: $!)"
 
 # ============================================
-# Selesai
+# Done
 # ============================================
 echo ""
 echo -e "${GREEN}╔══════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║   ✅ INSTALASI SELESAI!                      ║${NC}"
+echo -e "${GREEN}║   ✅ INSTALLATION DONE!                      ║${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "${CYAN}Cek proses:${NC}  ps aux | grep -E 'runner|watchdog|monitor|guard'"
